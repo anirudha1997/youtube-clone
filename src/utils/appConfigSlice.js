@@ -4,6 +4,8 @@ const appConfigSlice = createSlice({
   name: "appConfig",
   initialState: {
     sidebarVisible: true,
+    fixSideBar: false,
+    fixHeader: false,
   },
   reducers: {
     toggleSidebar: (state) => {
@@ -12,9 +14,16 @@ const appConfigSlice = createSlice({
     closeSideBar: (state) => {
       state.sidebarVisible = false;
     },
+    fixSideBar: (state, action) => {
+      state.fixSideBar = action.payload;
+    },
+    fixHeader: (state, action) => {
+      state.fixHeader = action.payload;
+    },
   },
 });
 
-export const { toggleSidebar, closeSideBar } = appConfigSlice.actions;
+export const { toggleSidebar, closeSideBar, fixSideBar } =
+  appConfigSlice.actions;
 
 export default appConfigSlice.reducer;

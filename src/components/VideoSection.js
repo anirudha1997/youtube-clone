@@ -7,7 +7,8 @@ import TagButton from "./TagButton";
 
 const VideoSection = () => {
   const dispatch = useDispatch();
-
+  const fixSideBar = useSelector((store) => store.appConfig.fixSideBar);
+  const sideBarOpen = useSelector((store) => store.appConfig.sidebarVisible);
   const popularVideos = useSelector((store) => store.videos.popularVideos);
   useEffect(() => {
     fetchfn();
@@ -21,8 +22,10 @@ const VideoSection = () => {
 
   if (!popularVideos) return;
 
+  const sectionMargin = fixSideBar && sideBarOpen ? "ml-[20%]" : "ml-0";
+
   return (
-    <div className="p-5 flex-1">
+    <div className={"p-5 flex-1 " + sectionMargin}>
       <div className="flex flex-wrap items-center">
         <TagButton label="All" />
         <TagButton label="Podcasts" />

@@ -32,7 +32,6 @@ const Header = () => {
     if (suggestionsCache[searchQuery]) {
       setSearchSuggestions(suggestionsCache[searchQuery]);
     } else {
-      console.log("fetched for ", searchQuery);
       const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
       const json = await data.json();
       setSearchSuggestions(json[1]);
@@ -41,7 +40,7 @@ const Header = () => {
   };
 
   return (
-    <div className="grid grid-flow-col py-3 shadow-md">
+    <div className="grid grid-flow-col py-3 shadow-md" id="header">
       <div className="col-span-1 flex items-center">
         <img
           src={NavMenuIcon}

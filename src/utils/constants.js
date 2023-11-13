@@ -11,3 +11,72 @@ export const YOUTUBE_VIDEO_INFO_API =
 
 export const YOUTUBE_SEARCH_API =
   "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+
+export const commentsData = [
+  {
+    name: "UserName",
+    text: "lorem ipsum lorem ipsumlorem ipsumlorem ipsum lorem ipsum lorem ipsum",
+    replies: [
+      {
+        name: "UserName",
+        text: "lorem ipsum lorem ipsumlorem ipsumlorem ipsum lorem ipsum lorem ipsum",
+      },
+      {
+        name: "UserName",
+        text: "lorem ipsum lorem ipsumlorem ipsumlorem ipsum lorem ipsum lorem ipsum",
+        replies: [
+          {
+            name: "UserName",
+            text: "lorem ipsum lorem ipsumlorem ipsumlorem ipsum lorem ipsum lorem ipsum",
+            replies: [
+              {
+                name: "UserName",
+                text: "lorem ipsum lorem ipsumlorem ipsumlorem ipsum lorem ipsum lorem ipsum",
+                replies: [
+                  {
+                    name: "UserName",
+                    text: "lorem ipsum lorem ipsumlorem ipsumlorem ipsum lorem ipsum lorem ipsum",
+                  },
+                ],
+              },
+            ],
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: "UserName",
+    text: "lorem ipsum lorem ipsumlorem ipsumlorem ipsum lorem ipsum lorem ipsum",
+  },
+  {
+    name: "UserName",
+    text: "lorem ipsum lorem ipsumlorem ipsumlorem ipsum lorem ipsum lorem ipsum",
+    replies: [
+      {
+        name: "UserName",
+        text: "lorem ipsum lorem ipsumlorem ipsumlorem ipsum lorem ipsum lorem ipsum",
+        replies: [
+          {
+            name: "UserName",
+            text: "lorem ipsum lorem ipsumlorem ipsumlorem ipsum lorem ipsum lorem ipsum",
+          },
+        ],
+      },
+    ],
+  },
+  {
+    name: "UserName",
+    text: "lorem ipsum lorem ipsumlorem ipsumlorem ipsum lorem ipsum lorem ipsum",
+    replies: [
+      {
+        name: "UserName",
+        text: "lorem ipsum lorem ipsumlorem ipsumlorem ipsum lorem ipsum lorem ipsum",
+      },
+    ],
+  },
+  {
+    name: "UserName",
+    text: "lorem ipsum lorem ipsumlorem ipsumlorem ipsum lorem ipsum lorem ipsum",
+  },
+];
