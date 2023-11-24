@@ -8,7 +8,7 @@ export const YOUTUBE_VIDEO_INFO_API =
   "&id=";
 
 export const YOUTUBE_SUGGESTIONS_API =
-  "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+  "https://corsproxy.io/?https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
 export const YOUTUBE_SEARCH_API =
   "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&type=video&key=" +
