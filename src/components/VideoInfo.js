@@ -22,6 +22,13 @@ const VideoInfo = ({ videoId }) => {
   const { description, title, publishedAt } = videoData?.snippet;
   const { viewCount } = videoData?.statistics;
 
+  const format = new Intl.NumberFormat("en-US", {
+    notation: "compact",
+    compactDisplay: "short",
+  });
+
+  const views = format.format(viewCount);
+
   const timestamp = new Date(publishedAt);
   const options = { year: "numeric", month: "long", day: "numeric" };
   const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
@@ -47,7 +54,7 @@ const VideoInfo = ({ videoId }) => {
           <p className="text-base lg:text-xl font-bold pl-3 pb-3">{title}</p>
           <div className="bg-gray-100 rounded-md ml-3 p-4">
             <p className="py-2 text-sm font-bold">
-              {viewCount} views {formattedDate}
+              {views} views {formattedDate}
             </p>
             <p className="whitespace-pre-line">{description}</p>
           </div>

@@ -1,20 +1,18 @@
-const YOUTUBE_API_KEY = "AIzaSyCP6z5ufUrj43JFxzfiFAyadXSgxPWQxHo";
-
 export const YOUTUBE_API =
   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&key=" +
-  YOUTUBE_API_KEY;
+  process.env.REACT_APP_YOUTUBE_API_KEY;
 
 export const YOUTUBE_VIDEO_INFO_API =
   "https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&key=" +
-  YOUTUBE_API_KEY +
+  process.env.REACT_APP_YOUTUBE_API_KEY +
   "&id=";
 
 export const YOUTUBE_SUGGESTIONS_API =
-  "https://corsproxy.io/?http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
+  "https://crossorigin.me/?http://suggestqueries.google.com/complete/search?&ds=yt&q=";
 
 export const YOUTUBE_SEARCH_API =
   "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&type=video&key=" +
-  YOUTUBE_API_KEY +
+  process.env.REACT_APP_YOUTUBE_API_KEY +
   "&q=";
 
 export const commentsData = [
