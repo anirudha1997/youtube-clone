@@ -32,13 +32,15 @@ const Header = () => {
   const [showSuggestions, setShowSuggestions] = useState(true);
 
   const fetchfn = useCallback(async () => {
-    if (suggestionsCache[searchQuery]) {
-      setSearchSuggestions(suggestionsCache[searchQuery]);
-    } else {
-      const data = await fetch(YOUTUBE_SUGGESTIONS_API + searchQuery);
-      const json = await data.json();
-      setSearchSuggestions(json[1]);
-      dispatch(cacheSuggestions({ [searchQuery]: json[1] }));
+    if (searchQuery !== "") {
+      if (suggestionsCache[searchQuery]) {
+        setSearchSuggestions(suggestionsCache[searchQuery]);
+      } else {
+        const data = await fetch(YOUTUBE_SUGGESTIONS_API + searchQuery);
+        const json = await data.json();
+        setSearchSuggestions(json[1]);
+        dispatch(cacheSuggestions({ [searchQuery]: json[1] }));
+      }
     }
   }, [dispatch, searchQuery, suggestionsCache]);
 
