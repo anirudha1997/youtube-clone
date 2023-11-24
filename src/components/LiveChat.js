@@ -9,7 +9,7 @@ const LiveChat = () => {
   const [chatInput, setChatInput] = useState("");
   return (
     <>
-      <div className="col-span-1 border border-gray-300 mt-2 rounded-md">
+      <div className="col-span-3 lg:col-span-1 border border-gray-300 mt-2 rounded-md">
         <div className=" bg-gray-100  px-2 py-4 shadow-sm h-[455px] overflow-y-scroll flex flex-col-reverse">
           {messages.map((msg, index) => (
             <LiveChatMessage

@@ -7,17 +7,28 @@ import CreateIcon from "./../img/create-icon.png";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../utils/appConfigSlice";
 import { Link } from "react-router-dom";
-import { YOUTUBE_SEARCH_API } from "../utils/constants";
-import { cacheSuggestions } from "../utils/searchSlice";
+import {
+  YOUTUBE_SEARCH_API,
+  YOUTUBE_SUGGESTIONS_API,
+} from "../utils/constants";
+import {
+  addSearchResults,
+  cacheSuggestions,
+  clearSearchResults,
+  setSearchQuery,
+} from "../utils/searchSlice";
+import { useNavigate } from "react-router";
 
 const Header = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const suggestionsCache = useSelector((store) => store.search);
+  const nextPageToken = useSelector((store) => store.search.nextPageToken);
   const sideBarToggler = () => {
     dispatch(toggleSidebar());
   };
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const searchQuery = useSelector((store) => store.search.searchQuery);
   const [searchSuggestions, setSearchSuggestions] = useState(null);
   const [showSuggestions, setShowSuggestions] = useState(true);
 
@@ -32,15 +43,32 @@ const Header = () => {
     if (suggestionsCache[searchQuery]) {
       setSearchSuggestions(suggestionsCache[searchQuery]);
     } else {
-      const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+      const data = await fetch(YOUTUBE_SUGGESTIONS_API + searchQuery);
       const json = await data.json();
       setSearchSuggestions(json[1]);
       dispatch(cacheSuggestions({ [searchQuery]: json[1] }));
     }
   };
 
+  const triggerSearch = async () => {
+    dispatch(clearSearchResults());
+    const data = await fetch(YOUTUBE_SEARCH_API + searchQuery);
+    const json = await data.json();
+    console.log("Results:", json?.items);
+    dispatch(
+      addSearchResults({
+        items: json?.items,
+        nextPageToken: json.nextPageToken,
+      })
+    );
+    navigate("/results?search_query=" + searchQuery);
+  };
+
   return (
-    <div className="grid grid-flow-col py-3 shadow-md" id="header">
+    <div
+      className="grid grid-flow-col py-3 shadow-md fixed w-full bg-white z-50"
+      id="header"
+    >
       <div className="col-span-1 flex items-center">
         <img
           src={NavMenuIcon}
@@ -60,13 +88,15 @@ const Header = () => {
             placeholder="Search"
             value={searchQuery}
             onChange={(e) => {
-              setSearchQuery(e.target.value);
+              dispatch(setSearchQuery(e.target.value));
             }}
             onFocus={() => {
               setShowSuggestions(true);
             }}
             onBlur={() => {
-              setShowSuggestions(false);
+              setTimeout(() => {
+                setShowSuggestions(false);
+              }, 300);
             }}
           />
           {searchSuggestions &&
@@ -78,6 +108,9 @@ const Header = () => {
                     <li
                       key={index}
                       className="py-2 px-4 cursor-pointer hover:bg-gray-200"
+                      onClick={() => {
+                        dispatch(setSearchQuery(suggestion));
+                      }}
                     >
                       🔍 {suggestion}
                     </li>
@@ -86,7 +119,10 @@ const Header = () => {
               </div>
             )}
         </div>
-        <button className="text-2xl p-4 py-1 border border-gray-200 border-l-0 rounded-r-full bg-gray-100">
+        <button
+          className="text-2xl p-4 py-1 border border-gray-200 border-l-0 rounded-r-full bg-gray-100"
+          onClick={triggerSearch}
+        >
           🔍
         </button>
       </div>

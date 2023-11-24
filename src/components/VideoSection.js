@@ -22,7 +22,7 @@ const VideoSection = () => {
 
   if (!popularVideos) return;
 
-  const sectionMargin = fixSideBar && sideBarOpen ? "ml-[20%]" : "ml-0";
+  const sectionMargin = sideBarOpen ? "ml-0 lg:ml-[20%]" : "ml-0";
 
   return (
     <div className={"p-5 flex-1 " + sectionMargin}>

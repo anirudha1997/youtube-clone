@@ -3,7 +3,7 @@ import { useSearchParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { closeSideBar } from "../utils/appConfigSlice";
 import VideoInfo from "./VideoInfo";
-import { addMessage } from "../utils/chatSlice";
+import { addMessage, clearChat } from "../utils/chatSlice";
 import { generateRandomName } from "../utils/helper";
 
 const WatchVideo = () => {
@@ -13,6 +13,7 @@ const WatchVideo = () => {
   const sideBarOpen = useSelector((store) => store.appConfig.sidebarVisible);
   useEffect(() => {
     dispatch(closeSideBar());
+    dispatch(clearChat());
     const interval = setInterval(() => {
       dispatch(
         addMessage({
@@ -26,7 +27,7 @@ const WatchVideo = () => {
       clearInterval(interval);
     };
   }, []);
-  const sectionMargin = fixSideBar && sideBarOpen ? "ml-[20%]" : "ml-0";
+  const sectionMargin = sideBarOpen ? "ml-0 lg:ml-[20%]" : "ml-0";
   return (
     <div className={"p-5 flex-1 " + sectionMargin}>
       <VideoInfo videoId={params.get("v")} />

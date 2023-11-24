@@ -31,7 +31,7 @@ const VideoInfo = ({ videoId }) => {
     <>
       <div className="grid grid-cols-3">
         <iframe
-          className="w-full p-3 aspect-video col-span-2"
+          className="w-full p-3 aspect-video col-span-3 lg:col-span-2"
           src={
             "https://www.youtube.com/embed/" + videoId + "?autoplay=1&mute=1"
           }
@@ -41,10 +41,10 @@ const VideoInfo = ({ videoId }) => {
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
         ></iframe>
-        <LiveChat />
+        <LiveChat key={videoId} />
       </div>
-      <div className="col-span-2 grid grid-cols-3">
-        <div className="col-span-2">
+      <div className="col-span-3 mt-5 lg:mt-0 lg:col-span-2 grid grid-cols-3">
+        <div className="col-span-3 lg:col-span-2">
           <p className="text-xl font-bold pl-3 pb-3">{title}</p>
           <div className="bg-gray-100 rounded-md ml-3 p-4">
             <p className="py-2 text-sm font-bold">

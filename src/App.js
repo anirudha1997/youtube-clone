@@ -5,6 +5,7 @@ import { Provider } from "react-redux";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import WatchVideo from "./components/WatchVideo";
 import VideoSection from "./components/VideoSection";
+import SearchResults from "./components/SearchResults";
 
 function App() {
   const appRouter = createBrowserRouter([
@@ -18,6 +19,14 @@ function App() {
         },
         {
           path: "/watch",
+          element: <WatchVideo />,
+        },
+        {
+          path: "/results",
+          element: <SearchResults />,
+        },
+        {
+          path: "/results/watch",
           element: <WatchVideo />,
         },
       ],

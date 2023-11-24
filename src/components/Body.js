@@ -2,12 +2,12 @@ import React, { useEffect } from "react";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
 import { Outlet } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fixSideBar } from "../utils/appConfigSlice";
 
 const Body = () => {
   const dispatch = useDispatch();
-
+  const sideBarOpen = useSelector((store) => store.appConfig.sidebarVisible);
   useEffect(() => {
     const scrollHandler = () => {
       if (
@@ -20,13 +20,22 @@ const Body = () => {
       else dispatch(fixSideBar(false));
     };
     window.addEventListener("scroll", scrollHandler);
-  }, []);
+    const body = document.body;
+    if (window.outerWidth <= 1024 && sideBarOpen) {
+      body.classList.add("overflow-hidden");
+    } else {
+      body.classList.remove("overflow-hidden");
+    }
+  }, [sideBarOpen]);
   return (
     <>
       <Header />
-      <div className="w-screen flex">
+      <div className="w-screen flex pt-[65px] relative">
         <Sidebar />
         <Outlet />
+        {sideBarOpen && (
+          <div className="block lg:hidden absolute z-10 top-0 left-0 w-full h-full bg-black opacity-50"></div>
+        )}
       </div>
     </>
   );
