@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { YOUTUBE_VIDEO_INFO_API } from "../utils/constants";
 import CommentList from "./CommentList";
 import { commentsData } from "../utils/constants";
@@ -7,19 +7,19 @@ import LiveChat from "./LiveChat";
 const VideoInfo = ({ videoId }) => {
   const [videoData, setVideoData] = useState(null);
 
-  useEffect(() => {
-    fetchfn();
-  }, []);
-
-  const fetchfn = async () => {
+  const fetchfn = useCallback(async () => {
     const data = await fetch(YOUTUBE_VIDEO_INFO_API + videoId);
     const json = await data.json();
     setVideoData(json?.items[0]);
-  };
+  }, [videoId]);
+
+  useEffect(() => {
+    fetchfn();
+  }, [fetchfn]);
 
   if (!videoData) return;
 
-  const { channelId, description, title, publishedAt } = videoData?.snippet;
+  const { description, title, publishedAt } = videoData?.snippet;
   const { viewCount } = videoData?.statistics;
 
   const timestamp = new Date(publishedAt);

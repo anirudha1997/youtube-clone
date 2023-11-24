@@ -6,7 +6,6 @@ const Sidebar = () => {
   const sidebarVisibility = useSelector(
     (store) => store.appConfig.sidebarVisible
   );
-  const fixSideBar = useSelector((store) => store.appConfig.fixSideBar);
 
   let sideBarDynamicStyle = "";
   if (!sidebarVisibility) sideBarDynamicStyle = "w-[0%] pl-0 ";

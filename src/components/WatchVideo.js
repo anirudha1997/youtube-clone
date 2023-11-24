@@ -9,7 +9,6 @@ import { generateRandomName } from "../utils/helper";
 const WatchVideo = () => {
   const [params] = useSearchParams();
   const dispatch = useDispatch();
-  const fixSideBar = useSelector((store) => store.appConfig.fixSideBar);
   const sideBarOpen = useSelector((store) => store.appConfig.sidebarVisible);
   useEffect(() => {
     dispatch(closeSideBar());
@@ -26,7 +25,7 @@ const WatchVideo = () => {
     return () => {
       clearInterval(interval);
     };
-  }, []);
+  }, [dispatch]);
   const sectionMargin = sideBarOpen ? "ml-0 lg:ml-[20%]" : "ml-0";
   return (
     <div className={"p-5 flex-1 " + sectionMargin}>

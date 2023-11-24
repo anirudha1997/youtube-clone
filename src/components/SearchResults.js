@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useCallback } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import SearchResultCard from "./SearchResultCard";
 import { YOUTUBE_SEARCH_API } from "../utils/constants";
@@ -9,20 +9,10 @@ const SearchResults = () => {
   const searchQuery = useSelector((store) => store.search.searchQuery);
   const searchResults = useSelector((store) => store.search.searchResults);
   const nextPageToken = useSelector((store) => store.search.nextPageToken);
-  const fixSideBar = useSelector((store) => store.appConfig.fixSideBar);
   const sideBarOpen = useSelector((store) => store.appConfig.sidebarVisible);
   const sectionMargin = sideBarOpen ? "ml-0 lg:ml-[20%]" : "ml-0";
 
-  const handleScroll = () => {
-    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
-
-    if (scrollTop + clientHeight >= scrollHeight - 10) {
-      // Load more data when the user is near the bottom
-      loadMoreResults();
-    }
-  };
-
-  const loadMoreResults = async () => {
+  const loadMoreResults = useCallback(async () => {
     if (nextPageToken) {
       //   const data = await fetch(
       //     `${YOUTUBE_SEARCH_API}&pageToken=${nextPageToken}`
@@ -39,7 +29,16 @@ const SearchResults = () => {
           })
         );
     }
-  };
+  }, [dispatch, nextPageToken, searchQuery]);
+
+  const handleScroll = useCallback(() => {
+    const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
+
+    if (scrollTop + clientHeight >= scrollHeight - 10) {
+      // Load more data when the user is near the bottom
+      loadMoreResults();
+    }
+  }, [loadMoreResults]);
 
   useEffect(() => {
     // Attach the event listener when the component mounts
@@ -49,7 +48,7 @@ const SearchResults = () => {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [nextPageToken]);
+  }, [nextPageToken, handleScroll]);
 
   if (searchResults !== null) {
     return (

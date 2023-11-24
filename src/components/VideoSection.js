@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback } from "react";
 import { YOUTUBE_API } from "./../utils/constants";
 import VideoPlaceholder from "./VideoPlaceholder";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,18 +7,18 @@ import TagButton from "./TagButton";
 
 const VideoSection = () => {
   const dispatch = useDispatch();
-  const fixSideBar = useSelector((store) => store.appConfig.fixSideBar);
   const sideBarOpen = useSelector((store) => store.appConfig.sidebarVisible);
   const popularVideos = useSelector((store) => store.videos.popularVideos);
-  useEffect(() => {
-    fetchfn();
-  }, []);
 
-  const fetchfn = async () => {
+  const fetchfn = useCallback(async () => {
     const data = await fetch(YOUTUBE_API);
     const json = await data.json();
     dispatch(addPopularVideos(json?.items));
-  };
+  }, [dispatch]);
+
+  useEffect(() => {
+    fetchfn();
+  }, [fetchfn]);
 
   if (!popularVideos) return;
 

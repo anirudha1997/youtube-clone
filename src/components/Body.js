@@ -26,7 +26,7 @@ const Body = () => {
     } else {
       body.classList.remove("overflow-hidden");
     }
-  }, [sideBarOpen]);
+  }, [sideBarOpen, dispatch]);
   return (
     <>
       <Header />

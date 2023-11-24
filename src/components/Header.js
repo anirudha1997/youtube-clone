@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import NavMenuIcon from "./../img/menu-icon.png";
 import YoutubeLogo from "./../img/youtubeLogo.png";
 import NotificationIcon from "./../img/notification-icon.png";
@@ -23,7 +23,6 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const suggestionsCache = useSelector((store) => store.search);
-  const nextPageToken = useSelector((store) => store.search.nextPageToken);
   const sideBarToggler = () => {
     dispatch(toggleSidebar());
   };
@@ -32,14 +31,7 @@ const Header = () => {
   const [searchSuggestions, setSearchSuggestions] = useState(null);
   const [showSuggestions, setShowSuggestions] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(fetchfn, 200);
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [searchQuery]);
-
-  const fetchfn = async () => {
+  const fetchfn = useCallback(async () => {
     if (suggestionsCache[searchQuery]) {
       setSearchSuggestions(suggestionsCache[searchQuery]);
     } else {
@@ -48,7 +40,14 @@ const Header = () => {
       setSearchSuggestions(json[1]);
       dispatch(cacheSuggestions({ [searchQuery]: json[1] }));
     }
-  };
+  }, [dispatch, searchQuery, suggestionsCache]);
+
+  useEffect(() => {
+    const timer = setTimeout(fetchfn, 200);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [searchQuery, fetchfn]);
 
   const triggerSearch = async () => {
     dispatch(clearSearchResults());
