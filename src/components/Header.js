@@ -75,7 +75,7 @@ const Header = () => {
         <img
           src={NavMenuIcon}
           alt="Nav Menu"
-          className="w-[1.5rem] md:w-8 mx-4 cursor-pointer"
+          className="w-[1.5rem] md:w-8 mx-2 md:mx-4 cursor-pointer"
           onClick={sideBarToggler}
         />
         <Link to="/">
@@ -91,7 +91,7 @@ const Header = () => {
         </Link>
       </div>
       <div className="col-span-2 md:col-span-8 flex justify-center items-center ">
-        <div className="relative w-2/3 z-0">
+        <div className="relative w-full md:w-2/3 z-0">
           <input
             type="text"
             className="p-4 py-2 border border-gray-200 rounded-l-full outline-none w-full"
@@ -112,7 +112,7 @@ const Header = () => {
           {searchSuggestions &&
             searchSuggestions.length > 0 &&
             showSuggestions && (
-              <div className="absolute  bg-white w-full py-2 rounded-md shadow-2xl z-10">
+              <div className="absolute bg-white w-full py-2 rounded-md shadow-2xl z-10">
                 <ul>
                   {searchSuggestions.map((suggestion, index) => (
                     <li
@@ -130,7 +130,7 @@ const Header = () => {
             )}
         </div>
         <button
-          className="text-2xl p-4 py-1 border border-gray-200 border-l-0 rounded-r-full bg-gray-100"
+          className="text-base md:text-2xl p-2 px-4 md:p-4 md:py-[0.25rem] border border-gray-200 border-l-0 rounded-r-full bg-gray-100"
           onClick={triggerSearch}
         >
           🔍
@@ -141,7 +141,7 @@ const Header = () => {
         <img
           src={NotificationIcon}
           alt="Nav Menu"
-          className="w-8 mx-4 cursor-pointer hidden md:block"
+          className="w-[1.5rem] md:w-8 mr-2 md:mx-4 cursor-pointer"
         />
         <img src={UserProfileIcon} alt="Nav Menu" className="mr-4" />
       </div>
