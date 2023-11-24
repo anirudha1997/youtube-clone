@@ -80,8 +80,8 @@ const Header = () => {
         />
         <Link to="/">
           <picture>
-            <source media="(max-width: 1023px)" srcset={YoutubeMobileLogo} />
-            <source media="(min-width: 1024px)" srcset={YoutubeLogo} />
+            <source media="(max-width: 1023px)" srcSet={YoutubeMobileLogo} />
+            <source media="(min-width: 1024px)" srcSet={YoutubeLogo} />
             <img
               src={YoutubeLogo}
               alt="Nav Menu"

@@ -8,7 +8,7 @@ export const YOUTUBE_VIDEO_INFO_API =
   "&id=";
 
 export const YOUTUBE_SUGGESTIONS_API =
-  "https://crossorigin.me/?http://suggestqueries.google.com/complete/search?&ds=yt&q=";
+  "http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=";
 
 export const YOUTUBE_SEARCH_API =
   "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=5&type=video&key=" +
