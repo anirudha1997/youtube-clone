@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 import NavMenuIcon from "./../img/menu-icon.png";
 import YoutubeLogo from "./../img/youtubeLogo.png";
+import YoutubeMobileLogo from "./../img/youtube-mobile-icon.png";
 import NotificationIcon from "./../img/notification-icon.png";
 import UserProfileIcon from "./../img/user-profile.png";
 import CreateIcon from "./../img/create-icon.png";
@@ -67,21 +68,29 @@ const Header = () => {
 
   return (
     <div
-      className="grid grid-flow-col py-3 shadow-md fixed w-full bg-white z-50"
+      className="grid grid-cols-4 md:grid-cols-12 py-3 shadow-md fixed w-full bg-white z-50"
       id="header"
     >
-      <div className="col-span-1 flex items-center">
+      <div className="col-span-1 md:col-span-2 flex items-center">
         <img
           src={NavMenuIcon}
           alt="Nav Menu"
-          className="w-8 mx-4 cursor-pointer"
+          className="w-[1.5rem] md:w-8 mx-4 cursor-pointer"
           onClick={sideBarToggler}
         />
         <Link to="/">
-          <img src={YoutubeLogo} alt="Nav Menu" className="w-40" />
+          <picture>
+            <source media="(max-width: 1023px)" srcset={YoutubeMobileLogo} />
+            <source media="(min-width: 1024px)" srcset={YoutubeLogo} />
+            <img
+              src={YoutubeLogo}
+              alt="Nav Menu"
+              className="max-w-[3rem] lg:max-w-[10rem] mr-4"
+            />
+          </picture>
         </Link>
       </div>
-      <div className="col-span-10 flex justify-center items-center ">
+      <div className="col-span-2 md:col-span-8 flex justify-center items-center ">
         <div className="relative w-2/3 z-0">
           <input
             type="text"
@@ -127,12 +136,12 @@ const Header = () => {
           🔍
         </button>
       </div>
-      <div className="col-span-1 flex items-center justify-end">
-        <img src={CreateIcon} alt="Nav Menu" />
+      <div className="col-auto md:col-span-2 flex items-center justify-end">
+        <img src={CreateIcon} alt="Nav Menu" className="hidden md:block" />
         <img
           src={NotificationIcon}
           alt="Nav Menu"
-          className="w-8 mx-4 cursor-pointer"
+          className="w-8 mx-4 cursor-pointer hidden md:block"
         />
         <img src={UserProfileIcon} alt="Nav Menu" className="mr-4" />
       </div>
