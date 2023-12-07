@@ -30,7 +30,7 @@ const Body = () => {
   return (
     <>
       <Header />
-      <div className="w-screen flex pt-[65px] relative">
+      <div className="w-full flex pt-[65px] relative">
         <Sidebar />
         <Outlet />
         {sideBarOpen && (

@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 
 const SearchResultCard = ({ info, thumbnail, videoId }) => {
   const { title, channelTitle, description, publishedAt } = info;
+
+  const timestamp = new Date(publishedAt);
+  const options = { year: "numeric", month: "long", day: "numeric" };
+  const formattedDate = new Intl.DateTimeFormat("en-US", options).format(
+    timestamp
+  );
+
   return (
     <Link to={"watch?v=" + videoId}>
       <div className="grid grid-cols-2 lg:grid-cols-4 mb-5">
@@ -15,7 +22,7 @@ const SearchResultCard = ({ info, thumbnail, videoId }) => {
         </div>
         <div className="col-span-1 lg:col-span-3 ml-3">
           <p className="text-xs md:text-xl">{title}</p>
-          <p className="text-xs text-gray-500">{publishedAt}</p>
+          <p className="text-xs text-gray-500">{formattedDate}</p>
           <p className="text-xs md:text-sm text-gray-500 my-3">
             {channelTitle}
           </p>
