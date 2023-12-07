@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const NavList = ({ heading, list }) => {
   return (
@@ -9,14 +10,25 @@ const NavList = ({ heading, list }) => {
         </h2>
       )}
       <ul className="list-none">
-        {list.map((item, index) => (
-          <li
-            key={index}
-            className="py-3 hover:bg-gray-300 rounded-md pl-3 cursor-pointer text-sm md:text-base"
-          >
-            {item}
-          </li>
-        ))}
+        {list.map((item, index) =>
+          item === "Home" ? (
+            <Link to="/">
+              <li
+                key={index}
+                className="py-3 hover:bg-gray-300 rounded-md pl-3 cursor-pointer text-sm md:text-base"
+              >
+                {item}
+              </li>
+            </Link>
+          ) : (
+            <li
+              key={index}
+              className="py-3 hover:bg-gray-300 rounded-md pl-3 cursor-pointer text-sm md:text-base"
+            >
+              {item}
+            </li>
+          )
+        )}
       </ul>
     </div>
   );

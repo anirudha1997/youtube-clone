@@ -1,5 +1,5 @@
 import React from "react";
-import UserProfileIcon from "../img/user-profile.png";
+import UserProfileIcon from "../assets/img/user-profile.png";
 import CommentList from "./CommentList";
 
 const Comment = (props) => {

@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import WatchVideo from "./components/WatchVideo";
 import VideoSection from "./components/VideoSection";
 import SearchResults from "./components/SearchResults";
+import "./assets/css/scrollbar.css";
 
 function App() {
   const appRouter = createBrowserRouter([

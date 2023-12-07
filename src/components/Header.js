@@ -1,10 +1,10 @@
 import React, { useEffect, useState, useCallback } from "react";
-import NavMenuIcon from "./../img/menu-icon.png";
-import YoutubeLogo from "./../img/youtubeLogo.png";
-import YoutubeMobileLogo from "./../img/youtube-mobile-icon.png";
-import NotificationIcon from "./../img/notification-icon.png";
-import UserProfileIcon from "./../img/user-profile.png";
-import CreateIcon from "./../img/create-icon.png";
+import NavMenuIcon from "./../assets/img/menu-icon.png";
+import YoutubeLogo from "./../assets/img/youtubeLogo.png";
+import YoutubeMobileLogo from "./../assets/img/youtube-mobile-icon.png";
+import NotificationIcon from "./../assets/img/notification-icon.png";
+import UserProfileIcon from "./../assets/img/user-profile.png";
+import CreateIcon from "./../assets/img/create-icon.png";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSidebar } from "../utils/appConfigSlice";
 import { Link } from "react-router-dom";

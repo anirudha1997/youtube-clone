@@ -1,4 +1,4 @@
-import UserProfileIcon from "../img/user-profile.png";
+import UserProfileIcon from "../assets/img/user-profile.png";
 
 const LiveChatMessage = ({ name, message }) => {
   return (
